@@ -82,13 +82,18 @@ const car = {
   isWell: true,
   color,
   run(driver) {
-    return `${driver} is running this car`;
+    return `${driver} is running this car on ${this.brand} ${this.model}`; //  this
+  },
+  go: (driver) => {
+    return `${driver} is running this car on ${this.brand} ${this.model}`;
   },
 };
-/*console.log(car);
+//console.log(car);
 console.log(car.run('Oleg'));
 console.log('=================================');
-////operator in*/
+console.log(car.go('Oleg'));
+
+////operator in
 //console.log('color' in car);
 
 // синтаксический сахар for .. in
@@ -115,6 +120,83 @@ function checkEmpty(obj) {
   }
   return true;
 }
-console.log(checkEmpty(emptyObj));
+//console.log(checkEmpty(emptyObj));
 
-console.log(Object.keys(car).length === 0);// эта строка заменяет блок кода выше
+//console.log(Object.keys(car).length === 0);// эта строка заменяет блок кода выше
+
+// THIS
+
+const desktop = {
+  brand: 'Intel',
+};
+
+const laptop = {
+  brand: 'Dell',
+};
+
+function showBrand() {
+  return this.brand;
+}
+
+function func() {
+  return this;
+}
+
+const arrowFunc = () => this;
+laptop.show = showBrand;
+desktop.show = showBrand;
+
+//console.log(func());
+//console.log(arrowFunc());
+console.log(laptop.show());
+console.log(desktop.show.call(car));
+
+const bindShow = laptop.show.bind(car);
+console.log(bindShow());
+
+// constructor
+function Car(brand, model, transmision, color) {
+  this.brand = brand;
+  this.model = model;
+  this.transmision = transmision;
+  this.color = color;
+  this.run = function () {
+    return ` One is running this car on ${this.brand} ${this.model}`;
+  };
+}
+
+const bmw = new Car('BMW', 'X5', 'Auto', 'Black');
+const toyota = new Car('toyota', 'camri', 'Auto', 'Black');
+
+console.log(bmw);
+console.log(toyota);
+
+const arr = [];
+console.log(Array.isArray(toyota));
+
+// Multiply price
+
+const price = {
+  tea: 20,
+  coffee: 30,
+  meal: 50,
+  onion: 10,
+  waiter: 'Jhon Doe',
+  isPaid: false,
+};
+
+for (let key in price) {
+  console.log(`${key} : ${price[key]}`);
+}
+function multPrice(bill) {
+  for (let key in bill) {
+    if (typeof bill[key] === 'number') {
+      bill[key] *= 2;
+    }
+  }
+}
+multPrice(price);
+console.log('=========================');
+for (let key in price) {
+  console.log(`${key} : ${price[key]}`);
+}
