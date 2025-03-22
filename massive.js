@@ -105,4 +105,56 @@ const arr30 = arr10.concat(arr11);
 console.log(arr30);
 const arr40 = [...arr10, ...arr11];
 console.log(arr40);
-//
+console.log(
+  '==========================================================================='
+);
+// методи перебору масивів
+//forEach
+const arr100 = [1, 2, 3, 4, 6];
+function printItem(item, index, array) {
+  console.log(`item [${index}] = ${item} `);
+  console.log(array);
+}
+arr100.forEach(printItem);
+
+// метод map()
+function toSqr(item) {
+  return item * -1;
+}
+
+const arr101 = arr100.map(toSqr);
+console.log(arr101);
+
+const users1 = ['Test', 'Test1'];
+function getName(item) {
+  return item;
+}
+const names = users1.map(getName);
+console.log(names);
+
+// фільтрація (filter)
+const arr102 = [2, 3, -10, 16, 7, -8];
+
+function isOdd(item) {
+  return item % 2 === 1 ? true : false;
+}
+const arrOdd = arr102.filter(isOdd);
+console.log(arrOdd);
+
+//  практика
+
+const arrTeen = [20, 10, 11, 22, 16, 33];
+
+function isTeen(item) {
+  return item >= 18;
+}
+const result = arrTeen.filter(isTeen);
+console.log(result);
+
+// findIndex  до тих пір поки не отримаємо true
+
+function isSixteen(item) {
+  return item === 16;
+}
+const fundIndex = arr102.findIndex(isSixteen);
+console.log(fundIndex);
