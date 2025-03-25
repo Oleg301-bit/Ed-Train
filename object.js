@@ -155,10 +155,10 @@ const bindShow = laptop.show.bind(car);
 console.log(bindShow());
 
 // constructor
-function Car(brand, model, transmision, color) {
+function Car(brand, model, transmission, color) {
   this.brand = brand;
   this.model = model;
-  this.transmision = transmision;
+  this.transmission = transmission;
   this.color = color;
   this.run = function () {
     return ` One is running this car on ${this.brand} ${this.model}`;
@@ -167,15 +167,71 @@ function Car(brand, model, transmision, color) {
 
 const bmw = new Car('BMW', 'X5', 'Auto', 'Black');
 const toyota = new Car('toyota', 'camri', 'Auto', 'Black');
+const getExtend = {
+  maxSpeed: 320,
+  year: 2000,
+};
 
+const newCar = Object.assign({}, bmw, getExtend);
+console.log(newCar);
+
+const objProto = Object.create(Array, {
+  num: {
+    value: 20,
+    enumerable: true,
+    writable: true,
+  },
+  string: {
+    value: 'str',
+    enumerable: true,
+    writable: true,
+  },
+});
+
+console.log(objProto);
+/*
 console.log(bmw);
 console.log(toyota);
+bmw.maxSpeed = 240;
+console.log(bmw.color);
+console.log(Object.getOwnPropertyDescriptor(bmw, 'color')); // flag
+console.log(Object.getOwnPropertyDescriptors(bmw, 'color')); // flag
 
+Object.defineProperty(toyota, 'minSpeed', {
+  value: 0,
+  enumerable: true,
+  writable: true,
+  configurable: true,
+});
+Object.freeze(toyota);
+Object.seal(toyota); // you can not add or delete
+console.log(Object.getOwnPropertyDescriptors(toyota));
+
+//Object.preventExtensions(bmw); // запечатал
+Object.defineProperties(bmw, {
+  year: {
+    value: 1985,
+    writable: true,
+    enumerable: true,
+  },
+  maxSpeed: {
+    value: 350,
+  },
+});
+console.log(bmw);
+console.log(toyota);*/
+//console.log((toyota.minSpeed = 10));
+// delete toyota.minSpeed;
+for (const key in toyota) {
+  console.log(key);
+}
+// флаги  дискрипторы свойств
+/*
 const arr = [];
 console.log(Array.isArray(toyota));
-
+*/
 // Multiply price
-
+/*
 const price = {
   tea: 20,
   coffee: 30,
@@ -200,3 +256,4 @@ console.log('=========================');
 for (let key in price) {
   console.log(`${key} : ${price[key]}`);
 }
+*/

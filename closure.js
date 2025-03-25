@@ -30,3 +30,29 @@ function counter() {
 }
 const counter1 = counter();
 console.log(counter1);
+
+// Рекурсия
+// Iteration
+/*function fibo(n) {
+  let fib1 = 1;
+  let fib2 = 1;
+  for (let i = 3; i <= n; i++) {
+    const fibNext = fib1 + fib2;
+    fib1 = fib2;
+    fib2 = fibNext;
+  }
+  return fib2;
+}
+console.log(fibo(7));
+*/
+// recursion
+
+function fibonacci(position) {
+  if (position < 3) {
+    return 1;
+  }
+  return fibonacci(position - 1) + fibonacci(position - 2);
+}
+console.log(fibonacci(8));
+
+
