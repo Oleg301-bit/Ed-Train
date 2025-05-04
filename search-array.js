@@ -95,4 +95,62 @@ function myFilter(arr, callback, thisArg) {
   }
   return res;
 }
-// reduce
+// reduce and reduceRight
+// pseudocode
+/*
+ array.reduce(callback,[initialValue]);
+ callback(accum,currentValue,[index,array]);
+ if (initialValue) {
+ accum = initialValue;
+ currentValue = array[0];
+ } else {
+    accum = array[0];
+    currentValue = array[1]; 
+ }
+*/
+const emptyArr = [];
+console.log(emptyArr.reduce((a, b) => a + b, 10));
+
+const friends = [
+  {
+    name: 'Ann',
+    books: ['HP', 'Python'],
+    age: 20,
+  },
+  {
+    name: 'Jhon',
+    books: ['JS', 'Hibernate'],
+    age: 25,
+  },
+  {
+    name: 'Bill',
+    books: ['Java', 'SQL'],
+    age: 30,
+  },
+];
+const allBooks = friends.reduce((prev, curr) => [...prev, ...curr.books], []); // spread
+console.log(allBooks);
+
+// own reduce
+const myReduce = (arr, callback, startValue) => {
+  let result;
+  if (startValue) {
+    result = startValue;
+    for (let i = 0; i < arr.length; i++) {
+      result = callback(result, arr[i], i, arr);
+    }
+  } else {
+    result = arr[0];
+    for (let i = 0; i < arr.length - 1; i++) {
+      result = callback(result, arr[i + 1], i, arr);
+    }
+  }
+  return result;
+};
+
+const arrArr = [
+  [1, 2],
+  [3, 4],
+  [5, 6],
+];
+console.log(myReduce(arrArr, (a, b) => a.concat(b)));
