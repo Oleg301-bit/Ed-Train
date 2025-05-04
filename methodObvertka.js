@@ -36,3 +36,10 @@ console.log(nokia.repeat(8));
 //console.log(nokia.padEnd(20, "/'"));
 console.log(end);
 console.log('---------------------------------------');
+console.log(together.slice(2, 5));
+console.log(together.split(' '));
+console.log(together.toLowerCase());
+console.log(together.toUpperCase());
+console.log(together.trim().split(' '));
+
+
